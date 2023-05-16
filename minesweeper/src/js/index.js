@@ -1,30 +1,28 @@
-import './hello.js';
+import './field.js';
+import './mines.js';
 
-const fieldSize = 15;
+function openCell(cell) {
+  console.log(cell);
+  if (Number(cell.innerText) === 0) {cell.classList.add('empty')};
+  if (Number(cell.innerText) === 1) {cell.classList.add('cell-1')};
 
-const field = document.createElement('div');
-field.className = 'field';
-document.body.append(field);
-
-class Cell {
-  constructor(num) {
-    this.elem = document.createElement('div');
-    this.elem.className = 'cell';
-    this.elem.setAttribute('num', `${num}`);
-  }
 }
 
-function createField() {
-  for (let i = 0; i < fieldSize; i += 1) {
-    const cellRow = document.createElement('div');
-    cellRow.className = 'cell-row';
-    field.append(cellRow);
-    for (let j = 0; j < fieldSize; j += 1) {
-      const cellNumber = i * fieldSize + j;
-      const newCell = new Cell(cellNumber);
-      cellRow.append(newCell.elem);
-    }
-  }
+function getCellCoordinates(value) {
+  const i = Math.floor(Number(value) / fieldSize);
+  const j = Number(value) % fieldSize;
+  return [i, j];
 }
 
-createField();
+
+addEventListener('click', event => {
+  event.preventDefault();
+  if (event.target.className === 'cell') {
+    openCell(event.target);
+  }
+})
+
+
+addEventListener('mousedown', event => {
+  event.preventDefault();
+})
