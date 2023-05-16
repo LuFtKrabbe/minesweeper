@@ -26,6 +26,7 @@
     min-height: 30px;
     background-color: $color-cell-filler;
     border: 1px solid $color-cell-boarder;
+    color: $color-cell-filler;
     border-radius: 5px;
     margin: 0;
     padding: 5px;
@@ -34,4 +35,68 @@
 .cell:hover {
     background-color: $color-cell-filler-light;
     border: 1px solid $color-cell-boarder-light;
+}
+
+.empty {
+    background-color: $color-cell-empty;
+}
+
+.cell-1 {
+    background-color: $color-cell-boarder-light !important;
+    color: $color-cell-1;
+}
+
+.cell-2 {
+    background-color: $color-cell-boarder-light !important;
+    color: $color-cell-2;
+}
+
+.cell-3 {
+    background-color: $color-cell-boarder-light !important;
+    color: $color-cell-3;
+}
+
+.cell-4 {
+    background-color: $color-cell-boarder-light !important;
+    color: $color-cell-4;
+}
+
+.cell-5 {
+    background-color: $color-cell-boarder-light !important;
+    color: $color-cell-5;
+}
+
+.cell-6 {
+    background-color: $color-cell-boarder-light !important;
+    color: $color-cell-6;
+}
+
+.cell-7 {
+    background-color: $color-cell-boarder-light !important;
+    color: $color-cell-7;
+}
+
+.cell-8 {
+    background-color: $color-cell-boarder-light !important;
+    color: $color-cell-8;
+}
+
+.mine {
+    background-color: $color-cell-mine !important;
+}
+
+.flag {
+    background-image: url("../../assets/cell/flag-icon-64x64.png");
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    content-visibility: hidden;
+}
+
+.question {
+    background-image: url("../../assets/cell/question-icon-64x64.png");
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    content-visibility: hidden;
 }

@@ -1,5 +1,6 @@
 html {
   font-size: 10px;
+  font-weight: 700;
 }
 
 body {
@@ -38,6 +39,7 @@ body {
   min-height: 30px;
   background-color: #bac7ba;
   border: 1px solid #e2e2e2;
+  color: #bac7ba;
   border-radius: 5px;
   margin: 0;
   padding: 5px;
@@ -46,6 +48,70 @@ body {
 .cell:hover {
   background-color: rgba(186, 199, 186, 0.3764705882);
   border: 1px solid #ebebeb;
+}
+
+.empty {
+  background-color: #c5c5c5;
+}
+
+.cell-1 {
+  background-color: #ebebeb !important;
+  color: #0000bb;
+}
+
+.cell-2 {
+  background-color: #ebebeb !important;
+  color: #00bb00;
+}
+
+.cell-3 {
+  background-color: #ebebeb !important;
+  color: #bb0000;
+}
+
+.cell-4 {
+  background-color: #ebebeb !important;
+  color: #00bbbb;
+}
+
+.cell-5 {
+  background-color: #ebebeb !important;
+  color: #bbbb00;
+}
+
+.cell-6 {
+  background-color: #ebebeb !important;
+  color: #bb00bb;
+}
+
+.cell-7 {
+  background-color: #ebebeb !important;
+  color: #005050;
+}
+
+.cell-8 {
+  background-color: #ebebeb !important;
+  color: #5000bb;
+}
+
+.mine {
+  background-color: #500000 !important;
+}
+
+.flag {
+  background-image: url("../../assets/cell/flag-icon-64x64.png");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  content-visibility: hidden;
+}
+
+.question {
+  background-image: url("../../assets/cell/question-icon-64x64.png");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  content-visibility: hidden;
 }
 
 /*# sourceMappingURL=style.css.map */
