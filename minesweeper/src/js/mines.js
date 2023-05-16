@@ -1,6 +1,8 @@
 import { fieldSize } from './settings.js';
 import { minesQuantity } from './settings.js';
 
+export let currentMinedField = [];
+
 let firstClick = true;
 
 function pickRandomCellsForMines(clickedCell) {
@@ -83,8 +85,6 @@ function displayField(minedFieldArr) {
     (value.innerText = minedFieldArr.flat()[key]);
   })
 }
-
-let currentMinedField = [];
 
 addEventListener('click', event => {
   if (event.target.className === 'cell' && firstClick) {
