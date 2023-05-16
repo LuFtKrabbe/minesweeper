@@ -90,6 +90,6 @@ addEventListener('click', event => {
   if (event.target.className === 'cell' && firstClick) {
     currentMinedField = setCellsDangerValue(event.target.attributes.num.value);
     firstClick = false;
-    console.log(currentMinedField)
+    console.log(currentMinedField);
   }
 })

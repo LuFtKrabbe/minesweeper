@@ -9,6 +9,7 @@ function openCell(cell) {
   if (Number(cell.innerText) === 7) {cell.classList.add('cell-7')};
   if (Number(cell.innerText) === 8) {cell.classList.add('cell-8')};
   if (cell.innerText === '*') {cell.classList.add('mine')};
+  cell.classList.add('opened');
 }
 
 function changeState(cell) {
@@ -30,13 +31,15 @@ function getCellCoordinates(value) {
 }
   
 addEventListener('click', event => {
-  if (event.target.className === 'cell') {
+  if (event.target.className === 'cell') { //only if string == 'cell' without any other classes
     openCell(event.target);
   }
 })
 
 addEventListener('contextmenu', event => {
   if (event.target.matches('.cell')) {
-    changeState(event.target);
+    if (!event.target.matches('.opened')) {
+      changeState(event.target);
+    }
   }
 })
