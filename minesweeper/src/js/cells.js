@@ -30,7 +30,14 @@ function openCell(cell) {
   if (Number(cell.innerText) === 7) {cell.classList.add('cell-7')};
   if (Number(cell.innerText) === 8) {cell.classList.add('cell-8')};
 
-  if (cell.innerText === '*') {cell.classList.add('mine')};
+  if (cell.innerText === '*') {
+    for (let i = 0; i < currentMinedField.length; i += 1) {
+      for (let j = 0; j < currentMinedField[0].length; j += 1) {
+        const currentCell = document.querySelector(`[num="${(i) * fieldSize + (j)}"]`);
+        if (currentCell.innerText === '*') {currentCell.classList.add('mine')};
+      }
+    }
+  };
 }
 
 function changeState(cell) {

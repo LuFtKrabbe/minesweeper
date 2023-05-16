@@ -96,7 +96,12 @@ body {
 }
 
 .mine {
-  background-color: #500000 !important;
+  background-color: #bd8989 !important;
+  background-image: url("../../assets/cell/mine-icon-64x64.png");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  content-visibility: hidden;
 }
 
 .flag {

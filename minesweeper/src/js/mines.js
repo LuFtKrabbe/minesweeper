@@ -66,7 +66,7 @@ function setCellsDangerValue(clickedCell) {
   
   for (let i = 0; i < minedFieldArr.length; i += 1) {
     for (let j = 0; j < minedFieldArr[0].length; j += 1) {
-      if (minedFieldArr[i][j] === true) {minedFieldArr[i][j] = "*"};
+      if (minedFieldArr[i][j] === true) {minedFieldArr[i][j] = '*'};
     }
   }
 

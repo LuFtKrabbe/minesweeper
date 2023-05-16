@@ -84,6 +84,11 @@
 
 .mine {
     background-color: $color-cell-mine !important;
+    background-image: url("../../assets/cell/mine-icon-64x64.png");
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    content-visibility: hidden;
 }
 
 .flag {
