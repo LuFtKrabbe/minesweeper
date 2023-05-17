@@ -1,6 +1,8 @@
+import './menu.js';
 import './field.js';
 import './mines.js';
 import './cells.js';
+
 
 addEventListener('mousedown', event => {
   event.preventDefault();
