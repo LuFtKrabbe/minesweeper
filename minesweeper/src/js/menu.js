@@ -37,7 +37,7 @@ mineSetInput.className = 'mine-set-input';
 mineSetInput.type = 'range';
 mineSetInput.min = '1';
 mineSetInput.max = '99';
-mineSetInput.value = '10';
+mineSetInput.value = `${minesQuantity}`;
 mineSetBlock.append(mineSetInput);
 
 const newGameBlock = document.createElement('div');

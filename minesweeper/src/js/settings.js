@@ -1,8 +1,14 @@
-export let fieldSize = 10;
-export let minesQuantity = 10;
+export let fieldSize = Number(localStorage.getItem('field')) ?? 10;
+export let minesQuantity = Number(localStorage.getItem('mines')) ?? 10;
 
-console.log(document.querySelector('.mode-easy'));
+function setLocalStorage() {
+    localStorage.setItem('field', fieldSize);
+    localStorage.setItem('mines', minesQuantity);
+}
 
-addEventListener('click', () => {
-    console.log(minesQuantity);
+window.addEventListener('beforeunload', setLocalStorage);
+
+document.addEventListener('input', event => {
+    minesQuantity = Number(event.target.value);
+    document.querySelector('.mine-set-label').innerText = `Mines quantity: ${minesQuantity}`;
 })
