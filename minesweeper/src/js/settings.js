@@ -1,2 +1,8 @@
-export const fieldSize = 10;
-export const minesQuantity = 10;
+export let fieldSize = 10;
+export let minesQuantity = 10;
+
+console.log(document.querySelector('.mode-easy'));
+
+addEventListener('click', () => {
+    console.log(minesQuantity);
+})

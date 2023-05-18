@@ -1,17 +1,19 @@
 import './menu.js';
+import './info.js';
 import './field.js';
 import './mines.js';
 import './cells.js';
+import './settings.js';
 
 
-addEventListener('mousedown', event => {
+document.querySelector('.field').addEventListener('mousedown', event => {
   event.preventDefault();
 })
 
-addEventListener('click', event => {
+document.querySelector('.field').addEventListener('click', event => {
   event.preventDefault();
 })
 
-addEventListener('contextmenu', event => {
+document.querySelector('.field').addEventListener('contextmenu', event => {
   event.preventDefault();
 })

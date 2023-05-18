@@ -228,4 +228,124 @@ body {
   padding: 5px;
 }
 
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  background-color: #e0e0e0;
+  border: 3px solid #b0ccb0;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 2px;
+  cursor: default;
+}
+
+.mode-block {
+  display: flex;
+  margin: 2px;
+}
+
+.mode-easy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 20px;
+  background-color: #e0e0e0;
+  border: 2px solid #b0ccb0;
+  border-radius: 5px;
+  margin: 1px;
+  padding: 5px;
+}
+
+.mode-medium {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 20px;
+  background-color: #e0e0e0;
+  border: 2px solid #b0ccb0;
+  border-radius: 5px;
+  margin: 1px;
+  padding: 5px;
+}
+
+.mode-hard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 20px;
+  background-color: #e0e0e0;
+  border: 2px solid #b0ccb0;
+  border-radius: 5px;
+  margin: 1px;
+  padding: 5px;
+}
+
+.mine-set-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 2px;
+}
+
+.mine-set-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+  border: 2px solid #b0ccb0;
+  border-radius: 5px;
+  min-height: 16px;
+  margin: 2px;
+}
+
+.mine-set-input {
+  appearance: none;
+  align-items: center;
+  background-color: #b0ccb0;
+  border-radius: 5px;
+  height: 6px;
+  margin: 8px 4px 8px 4px;
+}
+
+.mine-set-input::-webkit-slider-thumb {
+  appearance: none;
+  width: 5px;
+  height: 14px;
+  background: grey;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.new-game-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+  border: 2px solid #b0ccb0;
+  border-radius: 5px;
+  min-height: 16px;
+  width: 90%;
+  margin: 2px;
+}
+
+.records-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+  border: 2px solid #b0ccb0;
+  border-radius: 5px;
+  min-height: 16px;
+  width: 90%;
+  margin: 2px;
+}
+
 /*# sourceMappingURL=style.css.map */

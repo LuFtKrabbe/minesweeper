@@ -1,65 +1,55 @@
-let firstTimeClick = true;
+import { minesQuantity } from "./settings";
 
-const info = document.createElement('div');
-info.className = 'info';
-document.body.append(info);
+const menu = document.createElement('div');
+menu.className = 'menu';
+document.body.append(menu);
 
-const mineBlock = document.createElement('div');
-mineBlock.className = 'mine-block';
-info.append(mineBlock);
+const modeBlock = document.createElement('div');
+modeBlock.className = 'mode-block';
+menu.append(modeBlock);
 
-const mineLabel = document.createElement('div');
-mineLabel.className = 'mine-label';
-mineLabel.innerText = 'MINES';
-mineBlock.append(mineLabel);
+const modeEasy = document.createElement('div');
+modeEasy.className = 'mode-easy';
+modeEasy.innerText = 'EASY\n(10X10)';
+modeBlock.append(modeEasy);
 
-const mineValue = document.createElement('div');
-mineValue.className = 'mine-value';
-mineValue.innerText = '0';
-mineBlock.append(mineValue);
+const modeMedium = document.createElement('div');
+modeMedium.className = 'mode-medium';
+modeMedium.innerText = 'MEDIUM\n(15X15)';
+modeBlock.append(modeMedium);
 
-const stepBlock = document.createElement('div');
-stepBlock.className = 'step-block';
-info.append(stepBlock);
+const modeHard = document.createElement('div');
+modeHard.className = 'mode-hard';
+modeHard.innerText = 'HARD\n(25X25)';
+modeBlock.append(modeHard);
 
-const stepLabel = document.createElement('div');
-stepLabel.className = 'step-label';
-stepLabel.innerText = 'STEPS';
-stepBlock.append(stepLabel);
+const mineSetBlock = document.createElement('div');
+mineSetBlock.className = 'mine-set-block';
+menu.append(mineSetBlock);
 
-const stepValue = document.createElement('div');
-stepValue.className = 'step-value';
-stepValue.innerText = '0';
-stepBlock.append(stepValue);
+const mineSetLabel = document.createElement('div');
+mineSetLabel.className = 'mine-set-label';
+mineSetLabel.innerText = `Mines quantity: ${minesQuantity}`;
+mineSetBlock.append(mineSetLabel);
 
-const timeBlock = document.createElement('div');
-timeBlock.className = 'time-block';
-info.append(timeBlock);
+const mineSetInput = document.createElement('input');
+mineSetInput.className = 'mine-set-input';
+mineSetInput.type = 'range';
+mineSetInput.min = '1';
+mineSetInput.max = '99';
+mineSetInput.value = '10';
+mineSetBlock.append(mineSetInput);
 
-const timeLabel = document.createElement('div');
-timeLabel.className = 'time-label';
-timeLabel.innerText = 'TIME';
-timeBlock.append(timeLabel);
+const newGameBlock = document.createElement('div');
+newGameBlock.className = 'new-game-block';
+newGameBlock.innerText = 'Start new game';
+menu.append(newGameBlock);
 
-const timeValue = document.createElement('div');
-timeValue.className = 'time-value';
-timeValue.innerText = '0';
-timeBlock.append(timeValue);
+const recordsBlock = document.createElement('div');
+recordsBlock.className = 'records-block';
+recordsBlock.innerText = 'Records';
+menu.append(recordsBlock);
 
-addEventListener('click', event => {
-    if (event.target.className === 'cell') {
-        stepValue.innerText =  Number(stepValue.innerText) + 1;
-    }
-})
 
-addEventListener('click', event => {
-    if (event.target.matches('.mine')) {clearTimeout(timerId)};
-    if (firstTimeClick && event.target.className === 'cell') {
-        let timerId = setInterval(() => {
-            timeValue.innerText = Number(timeValue.innerText) + 1;
-            if (Number(timeValue.innerText) === 999) {clearTimeout(timerId)};
-        }, 1000);
-    }
-    firstTimeClick = false;
-})
+
 
