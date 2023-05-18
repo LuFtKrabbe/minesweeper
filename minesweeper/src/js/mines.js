@@ -1,95 +1,61 @@
-import { fieldSize } from './settings.js';
-import { minesQuantity } from './settings.js';
-
-export let currentMinedField = [];
-
-let firstClick = true;
-
-function pickRandomCellsForMines(clickedCell) {
+export function setGameField(clickedCell) {
+  
+  const minesQuantity = document.querySelector('.mine-set-input').valueAsNumber;
+  const fieldSize = document.querySelector('.cell-row').childElementCount;
   const minedCells = [];
-
-  while(minedCells.length !== minesQuantity) {
-    const randomCell = Math.floor(Math.random() * fieldSize * fieldSize).toString();
-    if (!minedCells.includes(randomCell) && (randomCell !== clickedCell)) {
-      minedCells.push(randomCell);
-    }
-    continue;
-  }
-
-  return minedCells;
-}
-
-function createMinedFieldArr(clickedCell) {
-
-  const minedCells = pickRandomCellsForMines(clickedCell);
   const minedFieldArr = [];
 
-  const cellMineOn = true;
-  const cellMineOff = 0;
-  
-  for (let i = 0; i < fieldSize; i += 1) {
-    const fieldRow = [];
-    for (let j = 0; j < fieldSize; j += 1) {
-      const cellNumber = (i * fieldSize + j).toString();
-      if (minedCells.includes(cellNumber)) {
-        fieldRow.push(cellMineOn);
-      } else {
-        fieldRow.push(cellMineOff);
+  function chooseMinedCells() {  
+    while(minedCells.length !== minesQuantity) {
+      const randomCell = Math.floor(Math.random() * fieldSize * fieldSize).toString();
+      if (!minedCells.includes(randomCell) && (randomCell !== clickedCell)) {
+        minedCells.push(randomCell);
       }
+      continue;
     }
-    minedFieldArr.push(fieldRow);
   }
 
-  return minedFieldArr;
-}
+  function createMinedFieldArr() {     
+    for (let i = 0; i < fieldSize; i += 1) {
+      const fieldRow = [];
+      for (let j = 0; j < fieldSize; j += 1) {
+        const cellNumber = (i * fieldSize + j).toString();
+        if (minedCells.includes(cellNumber)) {
+          fieldRow.push('*');
+        } else {
+          fieldRow.push(0);
+        }
+      }
+      minedFieldArr.push(fieldRow);
+    }
+  }
 
-function setCellsDangerValue(clickedCell) {
-  
-  const minedFieldArr = createMinedFieldArr(clickedCell);
-
-  function growDangerAroundMine(i, j) {
-    for (let m = -1; m <= 1; m += 1) {
-      for (let n = -1; n <= 1; n += 1) {
-        if ((i + m >= 0) && (i + m < minedFieldArr[0].length) && (j + n >= 0) && (j + n < minedFieldArr.length)) {
-          if (minedFieldArr[i + m][j + n] === true) {continue}
-          minedFieldArr[i + m][j + n] += 1;
+  function setCellsDanger() {
+    function growDangerAroundMine(i, j) {
+      for (let m = -1; m <= 1; m += 1) {
+        for (let n = -1; n <= 1; n += 1) {
+          if ((i + m >= 0) && (i + m < minedFieldArr[0].length) && (j + n >= 0) && (j + n < minedFieldArr.length)) {
+            if (minedFieldArr[i + m][j + n] === '*') {continue};
+            minedFieldArr[i + m][j + n] += 1;
+          }
         }
       }
     }
-  }
 
-  for (let i = 0; i < minedFieldArr.length; i += 1) {
-    for (let j = 0; j < minedFieldArr[0].length; j += 1) {
-      if (minedFieldArr[i][j] === true) {growDangerAroundMine(i, j)};
-    }
-  }
-  
-  for (let i = 0; i < minedFieldArr.length; i += 1) {
-    for (let j = 0; j < minedFieldArr[0].length; j += 1) {
-      if (minedFieldArr[i][j] === true) {minedFieldArr[i][j] = '*'};
+    for (let i = 0; i < minedFieldArr.length; i += 1) {
+      for (let j = 0; j < minedFieldArr[0].length; j += 1) {
+        if (minedFieldArr[i][j] === '*') {growDangerAroundMine(i, j)};
+      }
     }
   }
 
-  displayField(minedFieldArr);
-
-  return minedFieldArr;
-}
-
-function displayField(minedFieldArr) {
-
-  const field = document.querySelector('.field');
-  const cells = field.querySelectorAll('.cell');
-
-  console.log(minedFieldArr.flat());
-  cells.forEach((value, key) => {
-    (value.innerText = minedFieldArr.flat()[key]);
-  })
-}
-
-addEventListener('click', event => {
-  if (event.target.className === 'cell' && firstClick) {
-    currentMinedField = setCellsDangerValue(event.target.attributes.num.value);
-    firstClick = false;
-    console.log(currentMinedField);
+  function displayField() {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach((value, key) => {value.innerText = minedFieldArr.flat()[key]});
   }
-})
+
+  chooseMinedCells();
+  createMinedFieldArr();
+  setCellsDanger();
+  displayField();
+}

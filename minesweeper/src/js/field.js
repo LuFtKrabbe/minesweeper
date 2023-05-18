@@ -1,9 +1,3 @@
-import { fieldSize } from './settings.js';
-
-const field = document.createElement('div');
-field.className = 'field';
-document.body.append(field);
-
 class Cell {
   constructor(num) {
     this.elem = document.createElement('div');
@@ -12,7 +6,11 @@ class Cell {
   }
 }
 
-function createField() {
+export function createField(fieldSize) {
+  const field = document.createElement('div');
+  field.className = 'field';
+  document.body.append(field);
+
   for (let i = 0; i < fieldSize; i += 1) {
     const cellRow = document.createElement('div');
     cellRow.className = 'cell-row';
@@ -24,5 +22,3 @@ function createField() {
     }
   }
 }
-
-createField();
