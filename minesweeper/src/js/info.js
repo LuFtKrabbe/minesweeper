@@ -16,6 +16,20 @@ export function createInfo() {
     mineValue.className = 'mine-value';
     mineValue.innerText = '0';
     mineBlock.append(mineValue);
+
+    const flagBlock = document.createElement('div');
+    flagBlock.className = 'flag-block';
+    menu.append(flagBlock);
+    
+    const flagLabel = document.createElement('div');
+    flagLabel.className = 'flag-label';
+    flagLabel.innerText = 'FLAGS';
+    flagBlock.append(flagLabel);
+    
+    const flagValue = document.createElement('div');
+    flagValue.className = 'flag-value';
+    flagValue.innerText = '0';
+    flagBlock.append(flagValue);
     
     const stepBlock = document.createElement('div');
     stepBlock.className = 'step-block';

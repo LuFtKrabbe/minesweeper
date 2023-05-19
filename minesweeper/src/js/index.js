@@ -8,6 +8,8 @@ import { changeCellState } from './cells.js';
 let fieldSize = Number(localStorage.getItem('field')) ?? 10;
 let minesQuantity = Number(localStorage.getItem('mines')) ?? 10;
 let firstClick = true;
+let timer = 0;
+
 
 function setLocalStorage() {
   localStorage.setItem('field', fieldSize);
@@ -30,27 +32,27 @@ function setMode(clickedMode) {
   if (firstClick === true) {createField(fieldSize);};
 }
 
-
 const stepValue = document.querySelector('.step-value');
 const timeValue = document.querySelector('.time-value');
 const mineSetInput = document.querySelector('.mine-set-input');
+const cells = document.querySelectorAll('.cell');
 
 addEventListener('click', event => {
-  if (event.target.className === 'cell' && firstClick) {
-    setGameField(event.target.attributes.num.value);
-
-    let timerId = setInterval(() => {
-      timeValue.innerText = Number(timeValue.innerText) + 1;
-      if (Number(timeValue.innerText) === 999) {clearTimeout(timerId)};
-    }, 1000);
-    firstClick = false;
-
-  }
   if (event.target.className === 'cell') {
+    if (firstClick) {
+      setGameField(event.target.attributes.num.value);
+      displayMinesAndFlagsQuantity();
+      launchTimer();
+      firstClick = false;
+    }
     openCell(event.target);
     stepValue.innerText = Number(stepValue.innerText) + 1;
   }
   const modes = ['mode-easy', 'mode-medium', 'mode-hard'];
+  console.log(event.target);
+  if (event.target.className === 'cell opened mine') {
+    clearTimeout(timer);
+  };
   if (modes.includes(event.target.className)) {setMode(event.target)};
   if (event.target.className === 'new-game-block') {
     firstClick = true;
@@ -59,12 +61,48 @@ addEventListener('click', event => {
 })
 
 addEventListener('contextmenu', event => {
-  if (event.target.matches('.cell')) {
-    if (!event.target.matches('.opened') && !event.target.matches('.mine')) {
-      changeCellState(event.target);
-    }
+  const allowedClasses = ['cell', 'cell flag', 'cell question'];
+  if (allowedClasses.includes(event.target.className)) {
+    changeCellState(event.target);
+    displayMinesAndFlagsQuantity();
   }
 })
+
+function countFlags() {
+  let counter = 0;
+  cells.forEach((cell) => {if (cell.matches('.flag')) {counter += 1;}});
+  return counter;
+} 
+
+function countMines() {
+  let counter = 0;
+  cells.forEach((cell) => {if (cell.textContent === '*') {counter += 1;}});
+  return counter;
+} 
+
+function displayMinesAndFlagsQuantity() {
+  const flags = countFlags();
+  const mines = countMines();
+
+  document.querySelector('.flag-value').innerText = `${flags}`
+
+  if ((mines - flags) >= 0) {
+    document.querySelector('.mine-value').innerText = `${mines - flags}`;
+    document.querySelector('.mine-value').classList.remove('mode-active');
+    document.querySelector('.flag-value').classList.remove('mode-active');
+  } else {
+    document.querySelector('.mine-value').innerText = '0';
+    document.querySelector('.mine-value').classList.add('mode-active');
+    document.querySelector('.flag-value').classList.add('mode-active');
+  }
+} 
+
+function launchTimer() {
+  timer = setInterval(() => {
+    timeValue.innerText = Number(timeValue.innerText) + 1;
+    if (Number(timeValue.innerText) === 999) {clearTimeout(timer)};
+  }, 1000);
+} 
 
 mineSetInput.addEventListener('input', event => {
   minesQuantity = Number(event.target.value);
