@@ -16,9 +16,20 @@ function setLocalStorage() {
 
 window.addEventListener('beforeunload', setLocalStorage);
 
-createMenu(minesQuantity);
+createMenu(minesQuantity, fieldSize);
 createInfo();
 createField(fieldSize);
+
+function setMode(clickedMode) {
+  document.querySelector('.mode-easy').classList.remove('mode-active');
+  document.querySelector('.mode-medium').classList.remove('mode-active');
+  document.querySelector('.mode-hard').classList.remove('mode-active');
+  clickedMode.classList.add('mode-active');
+
+  fieldSize = Number(clickedMode.id);
+  if (firstClick === true) {createField(fieldSize);};
+}
+
 
 const stepValue = document.querySelector('.step-value');
 const timeValue = document.querySelector('.time-value');
@@ -39,6 +50,12 @@ addEventListener('click', event => {
     openCell(event.target);
     stepValue.innerText = Number(stepValue.innerText) + 1;
   }
+  const modes = ['mode-easy', 'mode-medium', 'mode-hard'];
+  if (modes.includes(event.target.className)) {setMode(event.target)};
+  if (event.target.className === 'new-game-block') {
+    firstClick = true;
+    createField(fieldSize);
+  };
 })
 
 addEventListener('contextmenu', event => {

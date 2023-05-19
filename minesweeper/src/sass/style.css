@@ -246,43 +246,25 @@ body {
   margin: 2px;
 }
 
-.mode-easy {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  min-height: 20px;
-  background-color: #e0e0e0;
-  border: 2px solid #b0ccb0;
-  border-radius: 5px;
-  margin: 1px;
-  padding: 5px;
-}
-
-.mode-medium {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  min-height: 20px;
-  background-color: #e0e0e0;
-  border: 2px solid #b0ccb0;
-  border-radius: 5px;
-  margin: 1px;
-  padding: 5px;
-}
-
+.mode-easy,
+.mode-medium,
 .mode-hard {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 40px;
+  text-align: center;
+  min-width: 50px;
   min-height: 20px;
   background-color: #e0e0e0;
   border: 2px solid #b0ccb0;
   border-radius: 5px;
   margin: 1px;
   padding: 5px;
+}
+
+.mode-active {
+  background-color: rgba(199, 145, 29, 0.8274509804);
+  border: 2px solid #ebebeb;
 }
 
 .mine-set-block {
@@ -319,22 +301,9 @@ body {
   height: 14px;
   background: grey;
   border-radius: 2px;
-  cursor: pointer;
 }
 
-.new-game-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #e0e0e0;
-  border: 2px solid #b0ccb0;
-  border-radius: 5px;
-  min-height: 16px;
-  width: 90%;
-  margin: 2px;
-}
-
+.new-game-block,
 .records-block {
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-export function createMenu(minesQuantity) {
+export function createMenu(minesQuantity, fieldSize) {
     const menu = document.createElement('div');
     menu.className = 'menu';
     document.body.append(menu);
@@ -10,16 +10,19 @@ export function createMenu(minesQuantity) {
     const modeEasy = document.createElement('div');
     modeEasy.className = 'mode-easy';
     modeEasy.innerText = 'EASY\n(10X10)';
+    modeEasy.id = '10';
     modeBlock.append(modeEasy);
     
     const modeMedium = document.createElement('div');
     modeMedium.className = 'mode-medium';
     modeMedium.innerText = 'MEDIUM\n(15X15)';
+    modeMedium.id = '15';
     modeBlock.append(modeMedium);
     
     const modeHard = document.createElement('div');
     modeHard.className = 'mode-hard';
     modeHard.innerText = 'HARD\n(25X25)';
+    modeHard.id = '25';
     modeBlock.append(modeHard);
     
     const mineSetBlock = document.createElement('div');
@@ -48,4 +51,8 @@ export function createMenu(minesQuantity) {
     recordsBlock.className = 'records-block';
     recordsBlock.innerText = 'RECORDS';
     menu.append(recordsBlock);
+
+    if (fieldSize === 10) {document.querySelector('.mode-easy').classList.add('mode-active');}
+    if (fieldSize === 15) {document.querySelector('.mode-medium').classList.add('mode-active');}
+    if (fieldSize === 25) {document.querySelector('.mode-hard').classList.add('mode-active');}
 }

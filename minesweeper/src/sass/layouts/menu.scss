@@ -16,43 +16,25 @@
     margin: 2px;
 }
 
-.mode-easy {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    min-height: 20px;
-    background-color: $color-field-filler;
-    border: 2px solid $color-field-boarder;
-    border-radius: 5px;
-    margin: 1px;
-    padding: 5px;
-}
-
-.mode-medium {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    min-height: 20px;
-    background-color: $color-field-filler;
-    border: 2px solid $color-field-boarder;
-    border-radius: 5px;
-    margin: 1px;
-    padding: 5px;
-}
-
+.mode-easy, 
+.mode-medium,
 .mode-hard {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
+    text-align: center;
+    min-width: 50px;
     min-height: 20px;
     background-color: $color-field-filler;
     border: 2px solid $color-field-boarder;
     border-radius: 5px;
     margin: 1px;
     padding: 5px;
+}
+
+.mode-active {
+    background-color: $color-active;
+    border: 2px solid $color-cell-boarder-light;
 }
 
 .mine-set-block {
@@ -87,24 +69,11 @@
     appearance: none;
     width: 5px;
     height: 14px;
-    background: grey;
+    background: $color-slider;
     border-radius: 2px;
-    cursor: pointer;
 }
 
-.new-game-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: $color-field-filler;
-    border: 2px solid $color-field-boarder;
-    border-radius: 5px;
-    min-height: 16px;
-    width: 90%;
-    margin: 2px;
-}
-
+.new-game-block,
 .records-block {
     display: flex;
     flex-direction: column;

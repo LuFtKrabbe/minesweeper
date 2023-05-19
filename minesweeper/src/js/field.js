@@ -7,6 +7,8 @@ class Cell {
 }
 
 export function createField(fieldSize) {
+  if (document.querySelector('.field')) {document.querySelector('.field').remove()};
+
   const field = document.createElement('div');
   field.className = 'field';
   document.body.append(field);
