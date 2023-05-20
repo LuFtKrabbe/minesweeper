@@ -18,15 +18,6 @@ export function openCell(clickedCell) {
     }
   }
 
-  function openAllMines() {
-    for (let i = 0; i < fieldSize; i += 1) {
-      for (let j = 0; j < fieldSize; j += 1) {
-        const currentCell = document.querySelector(`[num="${i * fieldSize + j}"]`);
-        if (currentCell.innerText === '*') {currentCell.classList.add('mine')};
-      }
-    }
-  }
-
   if (clickedCell.innerText === '1') {clickedCell.classList.add('cell-1')};
   if (clickedCell.innerText === '2') {clickedCell.classList.add('cell-2')};
   if (clickedCell.innerText === '3') {clickedCell.classList.add('cell-3')};
@@ -37,7 +28,6 @@ export function openCell(clickedCell) {
   if (clickedCell.innerText === '8') {clickedCell.classList.add('cell-8')};
   if (clickedCell.innerText === '0') {clickedCell.classList.add('empty')};
   if (clickedCell.innerText === '0') {openCellsAroundNull()};
-  if (clickedCell.innerText === '*') {openAllMines()};
 }
 
 export function changeCellState(clickedCell) {
