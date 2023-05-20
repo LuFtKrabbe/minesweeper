@@ -67,6 +67,3 @@ export function createInfo() {
     message.className = 'message';
     info.append(message);
 }
-
-
-

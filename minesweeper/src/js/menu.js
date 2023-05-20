@@ -46,8 +46,23 @@ export function createMenu(minesQuantity, fieldSize) {
     
     const recordsBlock = document.createElement('div');
     recordsBlock.className = 'records-block';
-    recordsBlock.innerText = 'RECORDS';
     menu.append(recordsBlock);
+
+    const recordsLabel = document.createElement('div');
+    recordsLabel.className = 'records-label';
+    recordsLabel.innerText = 'RECORDS';
+    recordsBlock.append(recordsLabel);
+
+    const recordsValue = document.createElement('div');
+    recordsValue.className = 'records-value';
+    recordsBlock.append(recordsValue);
+
+    for (let i = 1; i <= 10; i += 1) {
+        const record = document.createElement('div');
+        record.className = 'record';
+        record.id = `${i}`;
+        recordsValue.append(record);
+    }
 
     if (fieldSize === 10) {document.querySelector('.mode-easy').classList.add('mode-active');}
     if (fieldSize === 15) {document.querySelector('.mode-medium').classList.add('mode-active');}
