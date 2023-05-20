@@ -218,11 +218,6 @@ body {
   padding: 5px;
 }
 
-.mode-active {
-  background-color: rgba(199, 145, 29, 0.8274509804);
-  border: 2px solid #ebebeb;
-}
-
 .mine-set-block {
   display: flex;
   flex-direction: column;
@@ -257,6 +252,26 @@ body {
   height: 14px;
   background: grey;
   border-radius: 2px;
+}
+
+.media-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.sound-block,
+.color-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+  border: 2px solid #b0ccb0;
+  border-radius: 5px;
+  min-height: 30px;
+  width: 90px;
+  margin: 2px;
 }
 
 .new-game-block,
@@ -302,6 +317,11 @@ body {
   min-height: 16px;
   min-width: 90%;
   margin: 2px;
+}
+
+.mode-active {
+  background-color: rgba(199, 145, 29, 0.8274509804);
+  border: 2px solid #ebebeb;
 }
 
 /*# sourceMappingURL=style.css.map */

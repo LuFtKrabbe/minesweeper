@@ -38,6 +38,20 @@ export function createMenu(minesQuantity, fieldSize) {
     mineSetInput.max = '99';
     mineSetInput.value = `${minesQuantity}`;
     mineSetBlock.append(mineSetInput);
+
+    const mediaBlock = document.createElement('div');
+    mediaBlock.className = 'media-block';
+    menu.append(mediaBlock);
+
+    const soundBlock = document.createElement('div');
+    soundBlock.className = 'sound-block';
+    soundBlock.innerText = 'SOUND: OFF';
+    mediaBlock.append(soundBlock);
+
+    const colorBlock = document.createElement('div');
+    colorBlock.className = 'color-block';
+    colorBlock.innerText = 'COLOR: LIGHT';
+    mediaBlock.append(colorBlock);
     
     const newGameBlock = document.createElement('div');
     newGameBlock.className = 'new-game-block';

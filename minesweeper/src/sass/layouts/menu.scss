@@ -32,11 +32,6 @@
     padding: 5px;
 }
 
-.mode-active {
-    background-color: $color-active;
-    border: 2px solid $color-cell-boarder-light;
-}
-
 .mine-set-block {
     display: flex;
     flex-direction: column;
@@ -72,6 +67,27 @@
     background: $color-slider;
     border-radius: 2px;
 }
+
+.media-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.sound-block,
+.color-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-field-filler;
+    border: 2px solid $color-field-boarder;
+    border-radius: 5px;
+    min-height: 30px;
+    width: 90px;
+    margin: 2px;
+}
+
 
 .new-game-block,
 .records-block {
@@ -116,4 +132,9 @@
     min-height: 16px;
     min-width: 90%;
     margin: 2px;
+}
+
+.mode-active {
+    background-color: $color-active;
+    border: 2px solid $color-cell-boarder-light;
 }

@@ -35,13 +35,17 @@ export function changeCellState(clickedCell) {
   if (clickedCell.matches('.flag')) {
     clickedCell.classList.toggle('flag');
     clickedCell.classList.toggle('question');
-    const setQuestion = new Audio('./assets/sounds/set-question.mp3');
-    setQuestion.play();
+    if (document.querySelector('.sound-block').matches('.mode-active')) {
+      const setQuestion = new Audio('./assets/sounds/set-question.mp3');
+      setQuestion.play();
+    }
   } else if (clickedCell.matches('.question')) {
     clickedCell.classList.toggle('question');
   } else {
     clickedCell.classList.toggle('flag');
-    const setFlag = new Audio('./assets/sounds/set-flag.mp3');
-    setFlag.play();
+    if (document.querySelector('.sound-block').matches('.mode-active')) {
+      const setFlag = new Audio('./assets/sounds/set-flag.mp3');
+      setFlag.play();
+    }
   }
 }

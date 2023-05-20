@@ -70,13 +70,17 @@ function finishGameWin() {
   message.innerText = `Hooray! You found all mines in \n${timeValue.innerText} second(s) and ${stepValue.innerText} move(s)!`;
   writeRecord();
   stopTimer();
-  const playWin = new Audio('./assets/sounds/game-win.mp3');
-  playWin.play();
+  if (document.querySelector('.sound-block').matches('.mode-active')) {
+    const playWin = new Audio('./assets/sounds/game-win.mp3');
+    playWin.play();
+  }
 }
 
 function finishGameDefeat() {
-  const playDefeat = new Audio('./assets/sounds/game-defeat.mp3');
-  playDefeat.play();
+  if (document.querySelector('.sound-block').matches('.mode-active')) {
+    const playDefeat = new Audio('./assets/sounds/game-defeat.mp3');
+    playDefeat.play();
+  }
   message.innerText = 'Game over. Try again!';
   mineBursted = true;
   showMines();
@@ -112,11 +116,34 @@ function isDefeat() {
   return mineBursted;
 }
 
+function toggleSound() {
+  const soundBlock = document.querySelector('.sound-block');
+  soundBlock.classList.toggle('mode-active');
+  if (soundBlock.matches('.mode-active')) {
+    document.querySelector('.sound-block').innerText = 'SOUND: ON';
+  } else {
+    document.querySelector('.sound-block').innerText = 'SOUND: OFF';
+  }
+}
+
+function toggleColor() {
+  const soundBlock = document.querySelector('.color-block');
+  soundBlock.classList.toggle('mode-active');
+  if (soundBlock.matches('.mode-active')) {
+    document.querySelector('.color-block').innerText = 'COLOR: DARK';
+  } else {
+    document.querySelector('.color-block').innerText = 'COLOR: LIGHT';
+  }
+}
+
+
 modeBlock.addEventListener('click', setMode);
 newGameBlock.addEventListener('click', prepareNewGame);
 
 addEventListener('click', (event) => {
   event.preventDefault();
+  if (event.target.matches('.sound-block')) {toggleSound()};
+  if (event.target.matches('.color-block')) {toggleColor()};
   if (event.target.textContent === '*') { finishGameDefeat(); }
   if (isWin() || isDefeat()) { event.stopImmediatePropagation(); }
   if (event.target.className === 'cell') {
@@ -126,8 +153,10 @@ addEventListener('click', (event) => {
     if (isWin()) { 
       finishGameWin(); 
     } else {
-      const playClick = new Audio('./assets/sounds/click-cell.mp3');
-      playClick.play();
+      if (document.querySelector('.sound-block').matches('.mode-active')) {
+        const playClick = new Audio('./assets/sounds/click-cell.mp3');
+        playClick.play();
+      }
     }
   }
 });
