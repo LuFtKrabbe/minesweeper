@@ -2,7 +2,7 @@ export function openCell(clickedCell) {
 
   const fieldSize = document.querySelector('.cell-row').childElementCount;
 
-  clickedCell.classList.add('opened');
+  if (!(clickedCell.matches('.flag') || clickedCell.matches('.question'))) {clickedCell.classList.add('opened')};
 
   function openCellsAroundNull() {
     const i = Math.floor(Number(clickedCell.attributes.num.value) / fieldSize);

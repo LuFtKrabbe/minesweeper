@@ -1,11 +1,15 @@
 export function createInfo() {
-    const menu = document.createElement('div');
-    menu.className = 'info';
-    document.body.append(menu);
+    const info = document.createElement('div');
+    info.className = 'info';
+    document.body.append(info);
+
+    const stats = document.createElement('div');
+    stats.className = 'stats';
+    info.append(stats);
     
     const mineBlock = document.createElement('div');
     mineBlock.className = 'mine-block';
-    menu.append(mineBlock);
+    stats.append(mineBlock);
     
     const mineLabel = document.createElement('div');
     mineLabel.className = 'mine-label';
@@ -19,7 +23,7 @@ export function createInfo() {
 
     const flagBlock = document.createElement('div');
     flagBlock.className = 'flag-block';
-    menu.append(flagBlock);
+    stats.append(flagBlock);
     
     const flagLabel = document.createElement('div');
     flagLabel.className = 'flag-label';
@@ -30,24 +34,10 @@ export function createInfo() {
     flagValue.className = 'flag-value';
     flagValue.innerText = '0';
     flagBlock.append(flagValue);
-    
-    const stepBlock = document.createElement('div');
-    stepBlock.className = 'step-block';
-    menu.append(stepBlock);
-    
-    const stepLabel = document.createElement('div');
-    stepLabel.className = 'step-label';
-    stepLabel.innerText = 'STEPS';
-    stepBlock.append(stepLabel);
-    
-    const stepValue = document.createElement('div');
-    stepValue.className = 'step-value';
-    stepValue.innerText = '0';
-    stepBlock.append(stepValue);
-    
+
     const timeBlock = document.createElement('div');
     timeBlock.className = 'time-block';
-    menu.append(timeBlock);
+    stats.append(timeBlock);
     
     const timeLabel = document.createElement('div');
     timeLabel.className = 'time-label';
@@ -58,6 +48,24 @@ export function createInfo() {
     timeValue.className = 'time-value';
     timeValue.innerText = '0';
     timeBlock.append(timeValue);
+    
+    const stepBlock = document.createElement('div');
+    stepBlock.className = 'step-block';
+    stats.append(stepBlock);
+    
+    const stepLabel = document.createElement('div');
+    stepLabel.className = 'step-label';
+    stepLabel.innerText = 'STEPS';
+    stepBlock.append(stepLabel);
+    
+    const stepValue = document.createElement('div');
+    stepValue.className = 'step-value';
+    stepValue.innerText = '0';
+    stepBlock.append(stepValue);
+
+    const message = document.createElement('div');
+    message.className = 'message';
+    info.append(message);
 }
 
 

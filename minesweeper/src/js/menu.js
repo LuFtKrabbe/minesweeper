@@ -10,19 +10,16 @@ export function createMenu(minesQuantity, fieldSize) {
     const modeEasy = document.createElement('div');
     modeEasy.className = 'mode-easy';
     modeEasy.innerText = 'EASY\n(10X10)';
-    modeEasy.id = '10';
     modeBlock.append(modeEasy);
     
     const modeMedium = document.createElement('div');
     modeMedium.className = 'mode-medium';
     modeMedium.innerText = 'MEDIUM\n(15X15)';
-    modeMedium.id = '15';
     modeBlock.append(modeMedium);
     
     const modeHard = document.createElement('div');
     modeHard.className = 'mode-hard';
     modeHard.innerText = 'HARD\n(25X25)';
-    modeHard.id = '25';
     modeBlock.append(modeHard);
     
     const mineSetBlock = document.createElement('div');

@@ -2,12 +2,20 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    flex-direction: column;
     background-color: $color-field-filler;
     border: 3px solid $color-field-boarder;
     border-radius: 10px;
     margin: 10px;
     padding: 2px;
     cursor: default;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
 }
 
 .mine-block,
@@ -37,4 +45,19 @@
     border-radius: 5px;
     margin: 1px;
     padding: 5px;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    min-width: 40px;
+    min-height: 40px;
+    background-color: $color-field-filler;
+    border: 2px solid $color-field-boarder;
+    border-radius: 5px;
+    margin: 5px;
+    width: 95%;
 }

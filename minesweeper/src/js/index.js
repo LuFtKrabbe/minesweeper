@@ -2,14 +2,13 @@ import { createMenu } from './menu.js';
 import { createInfo } from './info.js';
 import { createField } from './field.js';
 import { setGameField } from './mines.js';
-import { openCell } from './cells.js';
-import { changeCellState } from './cells.js';
+import { openCell, changeCellState } from './cells.js';
 
 let fieldSize = Number(localStorage.getItem('field')) ?? 10;
 let minesQuantity = Number(localStorage.getItem('mines')) ?? 10;
 let firstClick = true;
+let mineBursted = false;
 let timer = 0;
-
 
 function setLocalStorage() {
   localStorage.setItem('field', fieldSize);
@@ -22,102 +21,144 @@ createMenu(minesQuantity, fieldSize);
 createInfo();
 createField(fieldSize);
 
-function setMode(clickedMode) {
+function setMode(event) {
   document.querySelector('.mode-easy').classList.remove('mode-active');
   document.querySelector('.mode-medium').classList.remove('mode-active');
   document.querySelector('.mode-hard').classList.remove('mode-active');
-  clickedMode.classList.add('mode-active');
 
-  fieldSize = Number(clickedMode.id);
-  if (firstClick === true) {createField(fieldSize);};
+  if (event.target.matches('.mode-easy')) { fieldSize = 10; }
+  if (event.target.matches('.mode-medium')) { fieldSize = 15; }
+  if (event.target.matches('.mode-hard')) { fieldSize = 25; }
+
+  if (firstClick === true) { createField(fieldSize); }
+
+  event.target.classList.add('mode-active');
 }
 
+const rightClickStates = ['cell', 'cell flag', 'cell question'];
+const mineValue = document.querySelector('.mine-value');
+const flagValue = document.querySelector('.flag-value');
 const stepValue = document.querySelector('.step-value');
 const timeValue = document.querySelector('.time-value');
+const modeBlock = document.querySelector('.mode-block');
+const newGameBlock = document.querySelector('.new-game-block');
+
 const mineSetInput = document.querySelector('.mine-set-input');
+const message = document.querySelector('.message');
 const cells = document.querySelectorAll('.cell');
 
-addEventListener('click', event => {
-  if (event.target.className === 'cell') {
-    if (firstClick) {
-      setGameField(event.target.attributes.num.value);
-      displayMinesAndFlagsQuantity();
-      launchTimer();
-      firstClick = false;
-    }
-    openCell(event.target);
-    stepValue.innerText = Number(stepValue.innerText) + 1;
-  }
-  const modes = ['mode-easy', 'mode-medium', 'mode-hard'];
-  console.log(event.target);
-  if (event.target.className === 'cell opened mine') {
-    clearTimeout(timer);
-  };
-  if (modes.includes(event.target.className)) {setMode(event.target)};
-  if (event.target.className === 'new-game-block') {
-    firstClick = true;
-    createField(fieldSize);
-  };
-})
+message.innerText = 'Choose the field size and set the mine quantity';
 
-addEventListener('contextmenu', event => {
-  const allowedClasses = ['cell', 'cell flag', 'cell question'];
-  if (allowedClasses.includes(event.target.className)) {
-    changeCellState(event.target);
-    displayMinesAndFlagsQuantity();
-  }
-})
+function launchTimer() {
+  timer = setInterval(() => {
+    timeValue.innerText = Number(timeValue.innerText) + 1;
+    if (Number(timeValue.innerText) === 999) { clearTimeout(timer); }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearTimeout(timer);
+}
+
+function startGame(clickedCell) {
+  setGameField(clickedCell);
+  displayMinesAndFlagsQuantity();
+  launchTimer();
+  message.innerText = 'Find all mines!';
+  firstClick = false;
+}
+
+function finishGameWin() {
+  message.innerText = `Hooray! You found all mines in \n${timeValue.innerText} second(s) and ${stepValue.innerText} move(s)!`;
+  cells.forEach((cell) => { if (cell.className === 'cell') { cell.classList.add('flag'); } });
+  stopTimer();
+}
+
+function finishGameDefeat() {
+  message.innerText = 'Game over. Try again!';
+  mineBursted = true;
+  stopTimer();
+}
+
+function prepareNewGame() {
+  stopTimer();
+  createField(fieldSize);
+  mineValue.innerText = 0;
+  flagValue.innerText = 0;
+  timeValue.innerText = 0;
+  stepValue.innerText = 0;
+  firstClick = true;
+}
 
 function countFlags() {
   let counter = 0;
-  cells.forEach((cell) => {if (cell.matches('.flag')) {counter += 1;}});
+  cells.forEach((cell) => { if (cell.matches('.flag')) { counter += 1; } });
   return counter;
-} 
+}
 
 function countMines() {
   let counter = 0;
-  cells.forEach((cell) => {if (cell.textContent === '*') {counter += 1;}});
+  cells.forEach((cell) => { if (cell.textContent === '*') { counter += 1; } });
   return counter;
-} 
+}
+
+function isFinished() {
+  let allCells = 0;
+  let openedCells = 0;
+  cells.forEach((cell) => {
+    if (cell.matches('.opened')) { openedCells += 1; }
+    allCells += 1;
+  });
+  if ((allCells - openedCells) === countMines()) { return true; }
+  return false;
+}
 
 function displayMinesAndFlagsQuantity() {
   const flags = countFlags();
   const mines = countMines();
 
-  document.querySelector('.flag-value').innerText = `${flags}`
+  flagValue.innerText = `${flags}`;
 
   if ((mines - flags) >= 0) {
-    document.querySelector('.mine-value').innerText = `${mines - flags}`;
-    document.querySelector('.mine-value').classList.remove('mode-active');
-    document.querySelector('.flag-value').classList.remove('mode-active');
+    mineValue.innerText = `${mines - flags}`;
+    mineValue.classList.remove('mode-active');
+    flagValue.classList.remove('mode-active');
   } else {
-    document.querySelector('.mine-value').innerText = '0';
-    document.querySelector('.mine-value').classList.add('mode-active');
-    document.querySelector('.flag-value').classList.add('mode-active');
+    mineValue.innerText = '0';
+    mineValue.classList.add('mode-active');
+    flagValue.classList.add('mode-active');
   }
-} 
+}
 
-function launchTimer() {
-  timer = setInterval(() => {
-    timeValue.innerText = Number(timeValue.innerText) + 1;
-    if (Number(timeValue.innerText) === 999) {clearTimeout(timer)};
-  }, 1000);
-} 
+modeBlock.addEventListener('click', setMode);
+newGameBlock.addEventListener('click', prepareNewGame);
 
-mineSetInput.addEventListener('input', event => {
+body.addEventListener('click', (event) => {
+  event.preventDefault();
+  if (isFinished() || mineBursted) { stopImmediatePropagation(); }
+  if (event.target.className === 'cell') {
+    if (firstClick) { startGame(event.target.attributes.num.value); }
+    openCell(event.target);
+    stepValue.innerText = Number(stepValue.innerText) + 1;
+    if (isFinished()) { finishGameWin(); }
+  }
+  if (event.target.textContent === '*') { finishGameDefeat(); }
+});
+
+addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+  if (isFinished() || mineBursted) { stopImmediatePropagation(); }
+  if (rightClickStates.includes(event.target.className)) {
+    changeCellState(event.target);
+    displayMinesAndFlagsQuantity();
+  }
+});
+
+addEventListener('mousedown', (event) => {
+  event.preventDefault();
+});
+
+mineSetInput.addEventListener('input', (event) => {
   minesQuantity = Number(event.target.value);
   document.querySelector('.mine-set-label').innerText = `MINES QUANTITY: ${minesQuantity}`;
-})
-
-document.querySelector('.field').addEventListener('mousedown', event => {
-  event.preventDefault();
-})
-
-document.querySelector('.field').addEventListener('click', event => {
-  event.preventDefault();
-})
-
-document.querySelector('.field').addEventListener('contextmenu', event => {
-  event.preventDefault();
-})
-
+});
