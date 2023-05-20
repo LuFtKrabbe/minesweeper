@@ -60,7 +60,6 @@ export function createMenu(minesQuantity, fieldSize) {
     for (let i = 1; i <= 10; i += 1) {
         const record = document.createElement('div');
         record.className = 'record';
-        record.id = `${i}`;
         recordsValue.append(record);
     }
 

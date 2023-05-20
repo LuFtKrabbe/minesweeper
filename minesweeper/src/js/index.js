@@ -70,9 +70,13 @@ function finishGameWin() {
   message.innerText = `Hooray! You found all mines in \n${timeValue.innerText} second(s) and ${stepValue.innerText} move(s)!`;
   writeRecord();
   stopTimer();
+  const playWin = new Audio('./assets/sounds/game-win.mp3');
+  playWin.play();
 }
 
 function finishGameDefeat() {
+  const playDefeat = new Audio('./assets/sounds/game-defeat.mp3');
+  playDefeat.play();
   message.innerText = 'Game over. Try again!';
   mineBursted = true;
   showMines();
@@ -119,7 +123,12 @@ addEventListener('click', (event) => {
     if (firstClick) { startGame(event.target.attributes.num.value); }
     openCell(event.target);
     stepValue.innerText = Number(stepValue.innerText) + 1;
-    if (isWin()) { finishGameWin(); }
+    if (isWin()) { 
+      finishGameWin(); 
+    } else {
+      const playClick = new Audio('./assets/sounds/click-cell.mp3');
+      playClick.play();
+    }
   }
 });
 
