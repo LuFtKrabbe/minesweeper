@@ -1,3 +1,17 @@
+export function showMessage(text) {
+  const message = document.querySelector('.message');
+  const stepValue = document.querySelector('.step-value');
+  const timeValue = document.querySelector('.time-value');
+
+  if (text === 'start') {message.innerText = 'Find all mines!'};
+  if (text === 'game-win') {
+    message.innerText = `Hooray! You found all mines in
+    ${timeValue.innerText} second(s) and ${stepValue.innerText} move(s)!`
+  };
+  if (text === 'game-defeat') {message.innerText = 'Game over. Try again!'};
+  if (text === 'setup') {message.innerText = 'Choose the field size and set the mine quantity'};
+}
+
 export function showFlags() {
   const cells = document.querySelectorAll('.cell');
   cells.forEach((cell) => { if (cell.className === 'cell') { cell.classList.add('flag'); } });
@@ -37,4 +51,11 @@ export function displayMinesAndFlags() {
     document.querySelector('.mine-value').classList.add('mode-active');
     document.querySelector('.flag-value').classList.add('mode-active');
   }
+}
+
+export function clearStats() {
+  document.querySelector('.mine-value').innerText = 0;
+  document.querySelector('.flag-value').innerText = 0;
+  document.querySelector('.time-value').innerText = 0;
+  document.querySelector('.step-value').innerText = 0;
 }

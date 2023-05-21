@@ -1,5 +1,6 @@
-export function openCell(clickedCell) {
+import { playSound } from "./sounds";
 
+export function openCell(clickedCell) {
   const fieldSize = document.querySelector('.cell-row').childElementCount;
 
   if (!(clickedCell.matches('.flag') || clickedCell.matches('.question'))) {clickedCell.classList.add('opened')};
@@ -34,17 +35,17 @@ export function changeCellState(clickedCell) {
   if (clickedCell.matches('.flag')) {
     clickedCell.classList.toggle('flag');
     clickedCell.classList.toggle('question');
-    if (document.querySelector('.sound-block').matches('.mode-active')) {
-      const setQuestion = new Audio('./assets/sounds/set-question.mp3');
-      setQuestion.play();
-    }
+    playSound('set-question');
   } else if (clickedCell.matches('.question')) {
     clickedCell.classList.toggle('question');
   } else {
     clickedCell.classList.toggle('flag');
-    if (document.querySelector('.sound-block').matches('.mode-active')) {
-      const setFlag = new Audio('./assets/sounds/set-flag.mp3');
-      setFlag.play();
-    }
+    playSound('set-flag');
   }
+}
+
+export function addStep() {
+  const stepValue = document.querySelector('.step-value');
+  stepValue.innerText = Number(stepValue.innerText) + 1;
+  playSound('click-cell');
 }
