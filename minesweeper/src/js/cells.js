@@ -31,7 +31,6 @@ export function openCell(clickedCell) {
 }
 
 export function changeCellState(clickedCell) {
-  console.log('au')
   if (clickedCell.matches('.flag')) {
     clickedCell.classList.toggle('flag');
     clickedCell.classList.toggle('question');

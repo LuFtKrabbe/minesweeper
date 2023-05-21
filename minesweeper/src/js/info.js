@@ -65,5 +65,6 @@ export function createInfo() {
 
     const message = document.createElement('div');
     message.className = 'message';
+    message.innerText = 'Choose the field size and set the mine quantity';
     info.append(message);
 }
