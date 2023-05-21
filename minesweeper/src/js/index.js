@@ -14,21 +14,17 @@ import { stopTimer } from './timer.js';
 
 let fieldSize = Number(localStorage.getItem('field')) ?? 10;
 let minesQuantity = Number(localStorage.getItem('mines')) ?? 10;
+let savedCells = JSON.parse(localStorage.getItem('cells')) ?? [];;
 
 let firstClick = true;
 let mineBursted = false;
 
-function setLocalStorage() {
-  localStorage.setItem('field', fieldSize);
-  localStorage.setItem('mines', minesQuantity);
-}
-
-window.addEventListener('beforeunload', setLocalStorage);
 
 createMenu(minesQuantity, fieldSize);
 createInfo();
 createField(fieldSize);
 displayRecords();
+loadGame();
 
 const rightClickStates = ['cell', 'cell flag', 'cell question'];
 const mineValue = document.querySelector('.mine-value');
@@ -42,6 +38,56 @@ const mineSetInput = document.querySelector('.mine-set-input');
 const message = document.querySelector('.message');
 
 message.innerText = 'Choose the field size and set the mine quantity';
+
+function setLocalStorage() {
+  if (!firstClick) {saveGame();}
+}
+
+function saveGame() {
+  const cells = document.querySelectorAll('.cell');
+  const time = document.querySelector('.time-value');
+  const step = document.querySelector('.step-value');
+  const messageInfo = document.querySelector('.message');
+  const sound = document.querySelector('.sound-block');
+
+  savedCells = [];
+  
+  cells.forEach((cell) => {
+    savedCells.push([cell.className, cell.textContent]);
+  })
+
+  localStorage.setItem('field', fieldSize);
+  localStorage.setItem('mines', minesQuantity);
+  localStorage.setItem('soundClass', sound.className);
+  localStorage.setItem('soundText', sound.innerText);
+  localStorage.setItem('step', step.innerText);
+  localStorage.setItem('time', time.innerText);
+  localStorage.setItem('message', messageInfo.innerText);
+  localStorage.setItem('cells', JSON.stringify(savedCells));
+}
+
+function loadGame() {
+  const cells = document.querySelectorAll('.cell');
+  const time = document.querySelector('.time-value');
+  const step = document.querySelector('.step-value');
+  const messageInfo = document.querySelector('.message');
+  const sound = document.querySelector('.sound-block');
+
+  cells.forEach((cell, key) => {
+    cell.className = savedCells[key][0];
+    cell.textContent = savedCells[key][1];
+  })
+  firstClick = false;
+
+  sound.className = localStorage.getItem('soundClass') ?? 'sound-block';
+  sound.innerText = localStorage.getItem('soundText') ?? 'SOUND: OFF';
+  step.innerText = localStorage.getItem('step') ?? 0;
+  time.innerText = localStorage.getItem('time') ?? 0;
+  messageInfo.innerText = localStorage.getItem('message') ?? 0;
+  console.log(localStorage.getItem('message') ?? 0);
+  launchTimer();
+  displayMinesAndFlags();
+}
 
 function setMode(event) {
   document.querySelector('.mode-easy').classList.remove('mode-active');
@@ -120,9 +166,9 @@ function toggleSound() {
   const soundBlock = document.querySelector('.sound-block');
   soundBlock.classList.toggle('mode-active');
   if (soundBlock.matches('.mode-active')) {
-    document.querySelector('.sound-block').innerText = 'SOUND: ON';
+    soundBlock.innerText = 'SOUND: ON';
   } else {
-    document.querySelector('.sound-block').innerText = 'SOUND: OFF';
+    soundBlock.innerText = 'SOUND: OFF';
   }
 }
 
@@ -130,15 +176,15 @@ function toggleColor() {
   const soundBlock = document.querySelector('.color-block');
   soundBlock.classList.toggle('mode-active');
   if (soundBlock.matches('.mode-active')) {
-    document.querySelector('.color-block').innerText = 'COLOR: DARK';
+    soundBlock.innerText = 'COLOR: DARK';
   } else {
-    document.querySelector('.color-block').innerText = 'COLOR: LIGHT';
+    soundBlock.innerText = 'COLOR: LIGHT';
   }
 }
 
-
 modeBlock.addEventListener('click', setMode);
 newGameBlock.addEventListener('click', prepareNewGame);
+window.addEventListener('beforeunload', setLocalStorage);
 
 addEventListener('click', (event) => {
   event.preventDefault();
