@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "style": "sass --watch src/sass/style.scss src/sass/style.css",
+    "style-light": "sass --watch src/sass/style-light.scss src/sass/style-light.css",
+    "style-dark": "sass --watch src/sass/style-dark.scss src/sass/style-dark.css",
     "build": "webpack",
     "watch": "webpack --watch"
   },

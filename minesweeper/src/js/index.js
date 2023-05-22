@@ -28,22 +28,20 @@ const newGameBlock = document.querySelector('.new-game-block');
 const mineSetInput = document.querySelector('.mine-set-input');
 
 function saveGame() {
+  const sound = document.querySelector('.sound-block');
+  const color = document.querySelector('.color-block');
+  const style = document.querySelector('.style');
+
   if (!firstClick) {
     const cells = document.querySelectorAll('.cell');
     const time = document.querySelector('.time-value');
     const step = document.querySelector('.step-value');
     const message = document.querySelector('.message');
-    const sound = document.querySelector('.sound-block');
-    const color = document.querySelector('.color-block');
-  
+
     savedCells = []; 
     cells.forEach((cell) => {savedCells.push([cell.className, cell.textContent]);})
 
     localStorage.setItem('mineBursted', mineBursted);
-    localStorage.setItem('soundClass', sound.className);
-    localStorage.setItem('soundText', sound.innerText);
-    localStorage.setItem('colorClass', color.className);
-    localStorage.setItem('colorText', color.innerText);
     localStorage.setItem('step', step.innerText);
     localStorage.setItem('time', time.innerText);
     localStorage.setItem('message', message.innerText);
@@ -51,26 +49,31 @@ function saveGame() {
   }
   localStorage.setItem('field', fieldSize);
   localStorage.setItem('mines', minesQuantity);
+
+  localStorage.setItem('soundClass', sound.className);
+  localStorage.setItem('soundText', sound.innerText);
+  localStorage.setItem('colorClass', color.className);
+  localStorage.setItem('colorText', color.innerText);
+  localStorage.setItem('colorStyle', style.href);
+
 }
 
 function loadGame() {
+  const sound = document.querySelector('.sound-block');
+  const color = document.querySelector('.color-block');
+  const style = document.querySelector('.style');
+
   if (savedCells) {
     const cells = document.querySelectorAll('.cell');
     const time = document.querySelector('.time-value');
     const step = document.querySelector('.step-value');
     const message = document.querySelector('.message');
-    const sound = document.querySelector('.sound-block');
-    const color = document.querySelector('.color-block');
 
     cells.forEach((cell, key) => {
       cell.className = savedCells[key][0];
       cell.textContent = savedCells[key][1];
     })
   
-    sound.className = localStorage.getItem('soundClass') || 'sound-block';
-    sound.innerText = localStorage.getItem('soundText') || 'SOUND: OFF';
-    color.className = localStorage.getItem('colorClass') || 'color-block';
-    color.innerText = localStorage.getItem('colorText') || 'COLOR: LIGHT';
     step.innerText = localStorage.getItem('step') || 0;
     time.innerText = localStorage.getItem('time') || 0;
     message.innerText = localStorage.getItem('message');
@@ -84,6 +87,12 @@ function loadGame() {
     displayMinesAndFlags();
     firstClick = false;
   }
+
+  sound.className = localStorage.getItem('soundClass') || 'sound-block';
+  sound.innerText = localStorage.getItem('soundText') || 'SOUND: OFF';
+  color.className = localStorage.getItem('colorClass') || 'color-block';
+  color.innerText = localStorage.getItem('colorText') || 'COLOR: LIGHT';
+  style.href = localStorage.getItem('colorStyle') || './src/sass/style-light.css';
 }
 
 function setMode(event) {

@@ -94,10 +94,13 @@ export function toggleSound() {
 
 export function toggleColor() {
   const soundBlock = document.querySelector('.color-block');
+  const styleFile = document.querySelector('.style');
   soundBlock.classList.toggle('mode-active');
   if (soundBlock.matches('.mode-active')) {
+    styleFile.href = './src/sass/style-dark.css';
     soundBlock.innerText = 'COLOR: DARK';
   } else {
+    styleFile.href = './src/sass/style-light.css';
     soundBlock.innerText = 'COLOR: LIGHT';
   }
 }

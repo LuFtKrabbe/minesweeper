@@ -8,5 +8,10 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    color: $color-body-text;
+    background-color: $color-body;
     margin: 0;
+    &::-webkit-scrollbar { 
+        width: 0 !important 
+    }
 }

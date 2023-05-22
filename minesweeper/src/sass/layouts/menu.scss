@@ -60,13 +60,16 @@
     border-radius: 5px;
     height: 6px;
     margin: 8px 4px 8px 4px;
+    &:focus {
+        outline: none;
+    }
 }
 
 .mine-set-input::-webkit-slider-thumb {
     appearance: none;
     width: 5px;
     height: 14px;
-    background: $color-slider;
+    background: $color-slider-filler;
     border-radius: 2px;
 }
 
@@ -116,12 +119,12 @@
     width: 95%;
     margin: 2px 0 2px 0;
     overflow-y: hidden;
-    transition: all 500ms ease-in-out;
+    transition: height 500ms ease-in-out;
 }
 
 .records-mode-active {
     border-radius: 5px;
-    height: 266px;
+    height: 250px;
 }
 
 .records-label {
@@ -147,8 +150,7 @@
     align-items: center;
     justify-content: center;
     background-color: $color-field-filler;
-    border: 2px solid $color-field-boarder;
-    border-radius: 5px;
+    border-bottom: 2px solid $color-field-boarder;
     min-height: 16px;
     min-width: 90%;
     margin: 2px;

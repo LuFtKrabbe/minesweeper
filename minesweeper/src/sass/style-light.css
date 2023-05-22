@@ -8,7 +8,12 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: #000000;
+  background-color: #ffffff;
   margin: 0;
+}
+body::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .field {
@@ -309,12 +314,15 @@ body {
   height: 6px;
   margin: 8px 4px 8px 4px;
 }
+.mine-set-input:focus {
+  outline: none;
+}
 
 .mine-set-input::-webkit-slider-thumb {
   appearance: none;
   width: 5px;
   height: 14px;
-  background: grey;
+  background: #8ca046;
   border-radius: 2px;
 }
 
@@ -363,12 +371,12 @@ body {
   width: 95%;
   margin: 2px 0 2px 0;
   overflow-y: hidden;
-  transition: all 500ms ease-in-out;
+  transition: height 500ms ease-in-out;
 }
 
 .records-mode-active {
   border-radius: 5px;
-  height: 266px;
+  height: 250px;
 }
 
 .records-label {
@@ -394,8 +402,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #f7f1ea;
-  border: 2px solid #ccc9ba;
-  border-radius: 5px;
+  border-bottom: 2px solid #ccc9ba;
   min-height: 16px;
   min-width: 90%;
   margin: 2px;
@@ -405,4 +412,4 @@ body {
   background-color: rgba(199, 219, 125, 0.8274509804);
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style-light.css.map */
