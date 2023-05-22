@@ -3,13 +3,13 @@ export function showMessage(text) {
   const stepValue = document.querySelector('.step-value');
   const timeValue = document.querySelector('.time-value');
 
-  if (text === 'start') {message.innerText = 'Find all mines!'};
+  if (text === 'start') { message.innerText = 'Find all mines!'; }
   if (text === 'game-win') {
     message.innerText = `Hooray! You found all mines in
-    ${timeValue.innerText} second(s) and ${stepValue.innerText} move(s)!`
-  };
-  if (text === 'game-defeat') {message.innerText = 'Game over. Try again!'};
-  if (text === 'setup') {message.innerText = 'Choose the field size and set the mine quantity'};
+    ${timeValue.innerText} second(s) and ${stepValue.innerText} move(s)!`;
+  }
+  if (text === 'game-defeat') { message.innerText = 'Game over. Try again!'; }
+  if (text === 'setup') { message.innerText = 'Choose the field size and set the mine quantity'; }
 }
 
 export function showFlags() {

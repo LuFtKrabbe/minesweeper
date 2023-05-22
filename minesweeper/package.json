@@ -19,5 +19,6 @@
     "eslint-plugin-import": "^2.27.5",
     "webpack": "^5.82.1",
     "webpack-cli": "^5.1.1"
-  }
+  },
+  "eslintIgnore": ["bundle.js"]
 }

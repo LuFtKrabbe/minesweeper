@@ -3,11 +3,12 @@ import { createInfo } from './info.js';
 import { createField } from './field.js';
 import { setGameField } from './mines.js';
 import { openCell, changeCellState, addStep } from './cells.js';
-import { countMines, showMines, showFlags } from './stats.js';
-import { clearStats, showMessage, displayMinesAndFlags } from './stats.js';
+import {
+  countMines, showMines, showFlags, clearStats, showMessage, displayMinesAndFlags,
+} from './stats.js';
 import { displayRecords, writeRecord, toggleRecords } from './records.js';
 import { launchTimer, stopTimer } from './timer.js';
-import { playSound } from "./sounds";
+import { playSound } from './sounds';
 
 let fieldSize = Number(localStorage.getItem('field')) || 10;
 let minesQuantity = Number(localStorage.getItem('mines')) || 10;
@@ -31,6 +32,8 @@ function saveGame() {
   const sound = document.querySelector('.sound-block');
   const color = document.querySelector('.color-block');
   const style = document.querySelector('.style');
+  const recordsLabel = document.querySelector('.records-label');
+  const recordsBlock = document.querySelector('.records-block');
 
   if (!firstClick) {
     const cells = document.querySelectorAll('.cell');
@@ -38,8 +41,8 @@ function saveGame() {
     const step = document.querySelector('.step-value');
     const message = document.querySelector('.message');
 
-    savedCells = []; 
-    cells.forEach((cell) => {savedCells.push([cell.className, cell.textContent]);})
+    savedCells = [];
+    cells.forEach((cell) => { savedCells.push([cell.className, cell.textContent]); });
 
     localStorage.setItem('mineBursted', mineBursted);
     localStorage.setItem('step', step.innerText);
@@ -55,13 +58,16 @@ function saveGame() {
   localStorage.setItem('colorClass', color.className);
   localStorage.setItem('colorText', color.innerText);
   localStorage.setItem('colorStyle', style.href);
-
+  localStorage.setItem('recordsLabel', recordsLabel.className);
+  localStorage.setItem('recordsBlock', recordsBlock.className);
 }
 
 function loadGame() {
   const sound = document.querySelector('.sound-block');
   const color = document.querySelector('.color-block');
   const style = document.querySelector('.style');
+  const recordsLabel = document.querySelector('.records-label');
+  const recordsBlock = document.querySelector('.records-block');
 
   if (savedCells) {
     const cells = document.querySelectorAll('.cell');
@@ -72,8 +78,8 @@ function loadGame() {
     cells.forEach((cell, key) => {
       cell.className = savedCells[key][0];
       cell.textContent = savedCells[key][1];
-    })
-  
+    });
+
     step.innerText = localStorage.getItem('step') || 0;
     time.innerText = localStorage.getItem('time') || 0;
     message.innerText = localStorage.getItem('message');
@@ -83,7 +89,7 @@ function loadGame() {
       mineBursted = false;
     }
 
-    if (!mineBursted) {launchTimer()};
+    if (!mineBursted) { launchTimer(); }
     displayMinesAndFlags();
     firstClick = false;
   }
@@ -93,6 +99,8 @@ function loadGame() {
   color.className = localStorage.getItem('colorClass') || 'color-block';
   color.innerText = localStorage.getItem('colorText') || 'COLOR: LIGHT';
   style.href = localStorage.getItem('colorStyle') || './src/sass/style-light.css';
+  recordsLabel.className = localStorage.getItem('recordsLabel') || 'records-label';
+  recordsBlock.className = localStorage.getItem('recordsBlock') || 'records-block';
 }
 
 function setMode(event) {
@@ -100,16 +108,16 @@ function setMode(event) {
   document.querySelector('.mode-medium').classList.remove('mode-active');
   document.querySelector('.mode-hard').classList.remove('mode-active');
 
-  if (event.target.matches('.mode-easy')) { 
-    fieldSize = 10; 
+  if (event.target.matches('.mode-easy')) {
+    fieldSize = 10;
     event.target.classList.add('mode-active');
   }
-  if (event.target.matches('.mode-medium')) { 
-    fieldSize = 15; 
+  if (event.target.matches('.mode-medium')) {
+    fieldSize = 15;
     event.target.classList.add('mode-active');
   }
-  if (event.target.matches('.mode-hard')) { 
-    fieldSize = 25; 
+  if (event.target.matches('.mode-hard')) {
+    fieldSize = 25;
     event.target.classList.add('mode-active');
   }
 
@@ -125,7 +133,7 @@ function startGame(clickedCell) {
 }
 
 function finishGameWin() {
-  showFlags()
+  showFlags();
   writeRecord();
   stopTimer();
   showMessage('game-win');
@@ -180,18 +188,15 @@ window.addEventListener('beforeunload', saveGame);
 
 addEventListener('click', (event) => {
   event.preventDefault();
-  if (event.target.matches('.sound-block')) {toggleSound()};
-  if (event.target.matches('.color-block')) {toggleColor()};
-  console.log(isWin());
-  console.log(isDefeat());
+  if (event.target.matches('.sound-block')) { toggleSound(); }
+  if (event.target.matches('.color-block')) { toggleColor(); }
+  if (event.target.textContent === '*') { finishGameDefeat(); }
   if (!(isWin() || isDefeat())) {
-    console.log('1');
     if (event.target.className === 'cell') {
       if (firstClick) { startGame(event.target.attributes.num.value); }
       openCell(event.target);
       addStep();
-      if (isWin()) {finishGameWin()};
-      if (event.target.textContent === '*') { finishGameDefeat(); }
+      if (isWin()) { finishGameWin(); }
     }
   }
 });
@@ -207,5 +212,5 @@ addEventListener('contextmenu', (event) => {
 });
 
 document.addEventListener('mousedown', (event) => {
-  if (!(event.target.className === 'mine-set-input')) {event.preventDefault();}
+  if (!(event.target.className === 'mine-set-input')) { event.preventDefault(); }
 });

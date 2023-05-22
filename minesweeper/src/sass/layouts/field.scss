@@ -41,6 +41,7 @@
 .cell:hover {
     background-color: $color-cell-filler-light;
     border: 1px solid $color-cell-boarder-light;
+    color: $color-cell-filler-light;
 }
 
 .empty {
@@ -70,35 +71,35 @@
 
 
 .cell-1 {
-    color: $color-cell-1;
+    color: $color-cell-1 !important;
 }
 
 .cell-2 {
-    color: $color-cell-2;
+    color: $color-cell-2 !important;
 }
 
 .cell-3 {
-    color: $color-cell-3;
+    color: $color-cell-3 !important;
 }
 
 .cell-4 {
-    color: $color-cell-4;
+    color: $color-cell-4 !important;
 }
 
 .cell-5 {
-    color: $color-cell-5;
+    color: $color-cell-5 !important;
 }
 
 .cell-6 {
-    color: $color-cell-6;
+    color: $color-cell-6 !important;
 }
 
 .cell-7 {
-    color: $color-cell-7;
+    color: $color-cell-7 !important;
 }
 
 .cell-8 {
-    color: $color-cell-8;
+    color: $color-cell-8 !important;
 }
 
 .mine {

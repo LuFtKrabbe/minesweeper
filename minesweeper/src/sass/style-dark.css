@@ -61,6 +61,7 @@ body::-webkit-scrollbar {
 .cell:hover {
   background-color: #7b96a8;
   border: 1px solid #3f443f;
+  color: #7b96a8;
 }
 
 .empty {
@@ -96,35 +97,35 @@ body::-webkit-scrollbar {
 }
 
 .cell-1 {
-  color: #0000bb;
+  color: #0000bb !important;
 }
 
 .cell-2 {
-  color: #00bb00;
+  color: #00bb00 !important;
 }
 
 .cell-3 {
-  color: #bb0000;
+  color: #bb0000 !important;
 }
 
 .cell-4 {
-  color: #00bbbb;
+  color: #00bbbb !important;
 }
 
 .cell-5 {
-  color: #bbbb00;
+  color: #bbbb00 !important;
 }
 
 .cell-6 {
-  color: #bb00bb;
+  color: #bb00bb !important;
 }
 
 .cell-7 {
-  color: #005050;
+  color: #005050 !important;
 }
 
 .cell-8 {
-  color: #5000bb;
+  color: #5000bb !important;
 }
 
 .mine {
@@ -287,6 +288,11 @@ body::-webkit-scrollbar {
   border-radius: 5px;
   margin: 1px;
 }
+.mode-easy:hover,
+.mode-medium:hover,
+.mode-hard:hover {
+  background-color: #7b96a8;
+}
 
 .mine-set-block {
   display: flex;
@@ -313,6 +319,9 @@ body::-webkit-scrollbar {
   border-radius: 5px;
   height: 6px;
   margin: 8px 4px 8px 4px;
+}
+.mine-set-input:hover {
+  background-color: #334552;
 }
 .mine-set-input:focus {
   outline: none;
@@ -345,6 +354,10 @@ body::-webkit-scrollbar {
   height: 20px;
   width: 47%;
 }
+.sound-block:hover,
+.color-block:hover {
+  background-color: #7b96a8;
+}
 
 .new-game-block {
   display: flex;
@@ -357,6 +370,9 @@ body::-webkit-scrollbar {
   height: 24px;
   width: 95%;
   margin: 2px 0 2px 0;
+}
+.new-game-block:hover {
+  background-color: #7b96a8;
 }
 
 .records-block {
@@ -383,10 +399,14 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
-  min-height: 16px;
-  width: 90%;
-  margin: 2px;
+  border-radius: 3px;
+  min-height: 20px;
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0px;
+}
+.records-label:hover {
+  background-color: #7b96a8;
 }
 
 .records-value {
