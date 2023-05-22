@@ -6,16 +6,21 @@
     background-color: $color-field-filler;
     border: 3px solid $color-field-boarder;
     border-radius: 10px;
-    margin: 10px;
+    width: 284px;
+    margin: 5px 0px 5px 0px;
     padding: 2px;
     cursor: default;
+    @include media-tablet {
+        width: 194px;
+    }
 }
 
 .stats {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-direction: row;
+    width: 95%;
 }
 
 .mine-block,
@@ -24,27 +29,45 @@
 .time-block {
     display: flex;
     flex-direction: column;
-    margin: 2px;
+    margin: 1px;
 }
 
 .mine-label,
-.mine-value,
 .flag-label,
-.flag-value,
 .step-label,
+.time-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 25px;
+    min-width: 60px;
+    background-color: $color-field-filler;
+    border: 2px solid $color-field-boarder;
+    border-radius: 5px;
+    margin: 1px 0 1px 0;
+    padding: 1px;
+    @include media-tablet {
+        min-width: 38px;
+        min-height: 20px;
+    }
+}
+
+.mine-value,
+.flag-value,
 .step-value,
-.time-label,
 .time-value {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
     min-height: 20px;
     background-color: $color-field-filler;
     border: 2px solid $color-field-boarder;
     border-radius: 5px;
-    margin: 1px;
-    padding: 5px;
+    margin: 1px 0 1px 0;
+    padding: 1px;
+    @include media-tablet {
+        min-height: 16px;
+    }
 }
 
 .message {
@@ -54,10 +77,10 @@
     box-sizing: border-box;
     text-align: center;
     min-width: 40px;
-    min-height: 40px;
+    min-height: 34px;
     background-color: $color-field-filler;
     border: 2px solid $color-field-boarder;
     border-radius: 5px;
-    margin: 5px;
+    margin: 2px 0 2px 0;
     width: 95%;
 }

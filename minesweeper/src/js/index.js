@@ -5,7 +5,7 @@ import { setGameField } from './mines.js';
 import { openCell, changeCellState, addStep } from './cells.js';
 import { countMines, showMines, showFlags } from './stats.js';
 import { clearStats, showMessage, displayMinesAndFlags } from './stats.js';
-import { displayRecords, writeRecord } from './records.js';
+import { displayRecords, writeRecord, toggleRecords } from './records.js';
 import { launchTimer, stopTimer } from './timer.js';
 import { playSound } from "./sounds";
 
@@ -23,6 +23,7 @@ displayRecords();
 loadGame();
 
 const modeBlock = document.querySelector('.mode-block');
+const recordsBlock = document.querySelector('.records-block');
 const newGameBlock = document.querySelector('.new-game-block');
 const mineSetInput = document.querySelector('.mine-set-input');
 
@@ -73,7 +74,11 @@ function loadGame() {
     step.innerText = localStorage.getItem('step') || 0;
     time.innerText = localStorage.getItem('time') || 0;
     message.innerText = localStorage.getItem('message');
-    mineBursted = localStorage.getItem('mineBursted');
+    if (localStorage.getItem('mineBursted') === 'true') {
+      mineBursted = true;
+    } else {
+      mineBursted = false;
+    }
 
     if (!mineBursted) {launchTimer()};
     displayMinesAndFlags();
@@ -127,7 +132,7 @@ function finishGameDefeat() {
 }
 
 function prepareNewGame() {
-  savedCells = '';
+  localStorage.setItem('cells', JSON.stringify(''));
   stopTimer();
   createField(fieldSize);
   displayMinesAndFlags();
@@ -161,13 +166,17 @@ function changeMinesQuantity(event) {
 modeBlock.addEventListener('click', setMode);
 mineSetInput.addEventListener('input', changeMinesQuantity);
 newGameBlock.addEventListener('click', prepareNewGame);
+recordsBlock.addEventListener('click', toggleRecords);
 window.addEventListener('beforeunload', saveGame);
 
 addEventListener('click', (event) => {
   event.preventDefault();
   if (event.target.matches('.sound-block')) {toggleSound()};
   if (event.target.matches('.color-block')) {toggleColor()};
+  console.log(isWin());
+  console.log(isDefeat());
   if (!(isWin() || isDefeat())) {
+    console.log('1');
     if (event.target.className === 'cell') {
       if (firstClick) { startGame(event.target.attributes.num.value); }
       openCell(event.target);

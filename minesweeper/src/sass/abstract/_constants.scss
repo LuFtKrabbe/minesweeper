@@ -1,14 +1,16 @@
-$color-active: #c7911dd3;
+$color-active: #c7db7dd3;
 
-$color-field-boarder: #b0ccb0;
-$color-field-filler: #e0e0e0;
+$color-field-boarder: #ccc9ba;
+$color-field-filler: #f7f1ea;
 
-$color-cell-boarder: #e2e2e2;
-$color-cell-boarder-light: #ebebeb;
-$color-cell-filler: #bac7ba;
-$color-cell-filler-light: #bac7ba60;
+$color-cell-boarder: #c2bbac;
+$color-cell-boarder-light: #e6e1d6;
+$color-cell-filler: #dfebaf;
+$color-cell-filler-light: #f1ffbf;
 
-$color-cell-empty: #c5c5c5;
+$color-cell-open: #ebebeb;
+
+$color-cell-empty: #dadada;
 $color-cell-1: #0000bb;
 $color-cell-2: #00bb00;
 $color-cell-3: #bb0000;
@@ -17,6 +19,11 @@ $color-cell-5: #bbbb00;
 $color-cell-6: #bb00bb;
 $color-cell-7: #005050;
 $color-cell-8: #5000bb;
-$color-cell-mine: #bd8989;
+$color-cell-mine: #daaaaa;
 
 $color-slider: grey;
+
+$desktop-width: 1280px;
+$tablet-width: 768px;
+$less-tablet-width: 767px;
+$mobile-XL-width: 500px;

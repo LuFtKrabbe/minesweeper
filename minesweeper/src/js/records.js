@@ -24,3 +24,10 @@ export function writeRecord() {
 
   displayRecords();
 }
+
+export function toggleRecords() {
+  const recordsLabel = document.querySelector('.records-label');
+  const recordsBlock = document.querySelector('.records-block');
+  recordsLabel.classList.toggle('mode-active');
+  recordsBlock.classList.toggle('records-mode-active');
+}

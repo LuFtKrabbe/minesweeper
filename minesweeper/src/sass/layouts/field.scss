@@ -6,7 +6,6 @@
     background-color: $color-field-filler;
     border: 3px solid $color-field-boarder;
     border-radius: 10px;
-    margin: 10px;
     padding: 4px;
 }
 
@@ -22,15 +21,21 @@
     justify-content: center;
     box-sizing: border-box;
     font-size: 1.6rem;
-    min-width: 30px;
-    min-height: 30px;
+    min-width: 28px;
+    min-height: 28px;
     background-color: $color-cell-filler;
     border: 1px solid $color-cell-boarder;
     color: $color-cell-filler;
     border-radius: 5px;
     margin: 0;
-    padding: 5px;
+    padding: 0px;
     cursor: default;
+    @include media-tablet {
+        min-width: 19px;
+        min-height: 19px;
+        font-size: 1.2rem;
+        border-radius: 3px;
+    }
 }
 
 .cell:hover {
@@ -39,46 +44,60 @@
 }
 
 .empty {
+    border: 1px solid $color-cell-boarder;
     background-color: $color-cell-empty;
+    color: $color-cell-empty;
+    &:hover {
+        border: 1px solid $color-cell-boarder;
+        background-color: $color-cell-empty;
+        color: $color-cell-empty;
+    }
 }
 
+.cell-1,
+.cell-2,
+.cell-3,
+.cell-4,
+.cell-5,
+.cell-6,
+.cell-7,
+.cell-8 {
+    background-color: $color-cell-open !important;
+    &:hover {
+        border: 1px solid $color-cell-boarder;
+    }
+}
+
+
 .cell-1 {
-    background-color: $color-cell-boarder-light !important;
     color: $color-cell-1;
 }
 
 .cell-2 {
-    background-color: $color-cell-boarder-light !important;
     color: $color-cell-2;
 }
 
 .cell-3 {
-    background-color: $color-cell-boarder-light !important;
     color: $color-cell-3;
 }
 
 .cell-4 {
-    background-color: $color-cell-boarder-light !important;
     color: $color-cell-4;
 }
 
 .cell-5 {
-    background-color: $color-cell-boarder-light !important;
     color: $color-cell-5;
 }
 
 .cell-6 {
-    background-color: $color-cell-boarder-light !important;
     color: $color-cell-6;
 }
 
 .cell-7 {
-    background-color: $color-cell-boarder-light !important;
     color: $color-cell-7;
 }
 
 .cell-8 {
-    background-color: $color-cell-boarder-light !important;
     color: $color-cell-8;
 }
 
