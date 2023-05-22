@@ -8,3 +8,12 @@ module.exports = {
   },
   mode: 'development',
 };
+
+module.exports = {
+  entry: './src/js/index.js',
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
+  },
+  mode: 'production',
+};
